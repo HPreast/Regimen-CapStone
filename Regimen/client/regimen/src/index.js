@@ -9,7 +9,6 @@ const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
 };
 firebase.initializeApp(firebaseConfig);
-console.log(firebaseConfig)
 
 ReactDOM.render(
   <React.StrictMode>
