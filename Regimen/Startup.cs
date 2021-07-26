@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Regimen.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace Regimen
         public void ConfigureServices(IServiceCollection services)
         {
             var firebaseProjectId = Configuration.GetValue<string>("FirebaseProjectId");
-
+            services.AddTransient<IUserRepository, UserRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
