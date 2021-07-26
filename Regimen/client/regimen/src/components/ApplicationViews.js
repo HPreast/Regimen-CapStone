@@ -1,6 +1,7 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { Dashboard } from "./dashboard";
+import { ExerciseList } from "./exerciseList";
 import Login from "./login";
 import Register from "./register";
 
@@ -12,9 +13,9 @@ export default function ApplicationViews({ isLoggedIn }) {
                     {isLoggedIn ? <Dashboard /> : <Redirect to="/login" />}
                 </Route>
 
-                {/* <Route path="/add">
-                    {isLoggedIn ? <QuoteAddForm /> : <Redirect to="/login" />}
-                </Route> */}
+                <Route path="/exercises">
+                    {isLoggedIn ? <ExerciseList /> : <Redirect to="/login" />}
+                </Route>
 
                 <Route path="/login">
                     <Login />
