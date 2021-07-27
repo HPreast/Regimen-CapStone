@@ -28,7 +28,9 @@ namespace Regimen
         public void ConfigureServices(IServiceCollection services)
         {
             var firebaseProjectId = Configuration.GetValue<string>("FirebaseProjectId");
+
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IWorkoutRepository, WorkoutRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
