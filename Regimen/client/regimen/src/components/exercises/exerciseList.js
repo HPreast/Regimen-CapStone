@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { GetAbsExercises, GetArmExercises, GetBackExercises, GetCalveExercises, GetChestExercises, GetLegExercises, GetShoulderExercises } from "../modules/exerciseManager";
+import { GetAbsExercises, GetArmExercises, GetBackExercises, GetCalveExercises, GetChestExercises, GetLegExercises, GetShoulderExercises } from "../../modules/exerciseManager";
 import { ExerciseCard } from "./exerciseCard";
 
 export const ExerciseList = () => {
