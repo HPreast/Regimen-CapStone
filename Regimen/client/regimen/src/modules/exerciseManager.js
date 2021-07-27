@@ -29,3 +29,43 @@ export const GetBackExercises = () => {
     })
         .then(res => res.json())
 }
+
+export const GetCalveExercises = () => {
+    return fetch(`${baseUrl}/exercise/?language=2&category=14`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        },
+    })
+        .then(res => res.json())
+}
+
+export const GetChestExercises = () => {
+    return fetch(`${baseUrl}/exercise/?language=2&category=11`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        },
+    })
+        .then(res => res.json())
+}
+
+export const GetLegExercises = () => {
+    return fetch(`${baseUrl}/exercise/?language=2&category=9`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        },
+    })
+        .then(res => res.json())
+}
+
+export const GetShoulderExercises = () => {
+    return fetch(`${baseUrl}/exercise/?language=2&category=13`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        },
+    })
+        .then(res => res.json())
+}

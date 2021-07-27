@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { GetAbsExercises, GetArmExercises, GetBackExercises } from "../modules/exerciseManager";
-import { AbsExerciseCard } from "./absExerciseCard";
-import { ArmsExerciseCard } from "./armsExerciseCard";
-import { BackExerciseCard } from "./backExerciseCard";
+import { GetAbsExercises, GetArmExercises, GetBackExercises, GetCalveExercises, GetChestExercises, GetLegExercises, GetShoulderExercises } from "../modules/exerciseManager";
+import { ExerciseCard } from "./exerciseCard";
 
 export const ExerciseList = () => {
     const [abExercises, setAbExercises] = useState([]);
@@ -11,29 +9,58 @@ export const ExerciseList = () => {
     const [isArmsVisible, setIsArmsVisible] = useState(false);
     const [backExercises, setBackExercises] = useState([]);
     const [isBackVisible, setIsBackVisible] = useState(false);
+    const [calveExercises, setCalveExercises] = useState([]);
+    const [isCalveVisible, setIsCalveVisible] = useState(false);
+    const [chestExercises, setChestExercises] = useState([]);
+    const [isChestVisible, setIsChestVisible] = useState(false);
+    const [legExercises, setLegExercises] = useState([]);
+    const [isLegVisible, setIsLegVisible] = useState(false);
+    const [shoulderExercises, setShoulderExercises] = useState([]);
+    const [isShoulderVisible, setIsShoulderVisible] = useState(false);
 
     const getAbExercises = async () => {
         let array = await GetAbsExercises()
         setAbExercises(array.results)
-        console.log("abs", array)
     }
 
     const getArmsExercises = async () => {
         let armsArray = await GetArmExercises()
         setArmExercises(armsArray.results)
-        console.log("arms", armsArray)
     }
 
     const getBackExercises = async () => {
         let backArray = await GetBackExercises()
         setBackExercises(backArray.results)
-        console.log("back", backArray)
+    }
+
+    const getCalveExercises = async () => {
+        let calveArray = await GetCalveExercises()
+        setCalveExercises(calveArray.results)
+    }
+
+    const getChestExercises = async () => {
+        let chestArray = await GetChestExercises()
+        setChestExercises(chestArray.results)
+    }
+
+    const getLegExercises = async () => {
+        let legArray = await GetLegExercises()
+        setLegExercises(legArray.results)
+    }
+
+    const getShoulderExercises = async () => {
+        let shoulderArray = await GetShoulderExercises()
+        setShoulderExercises(shoulderArray.results)
     }
 
     useEffect(() => {
         getAbExercises()
         getArmsExercises()
         getBackExercises()
+        getCalveExercises()
+        getChestExercises()
+        getLegExercises()
+        getShoulderExercises()
     }, [])
 
     return (
@@ -46,7 +73,7 @@ export const ExerciseList = () => {
                     <>
                         <button type="button" className="btn btn-primary" onClick={() => setIsAbsVisible(false)}>Abs</button>
                         {abExercises?.map(exercise => {
-                            return <AbsExerciseCard
+                            return <ExerciseCard
                                 key={exercise.id}
                                 exercise={exercise}
                             />
@@ -62,7 +89,7 @@ export const ExerciseList = () => {
                     <>
                         <button type="button" className="btn btn-primary" onClick={() => setIsArmsVisible(false)}>Arms</button>
                         {armExercises?.map(exercise => {
-                            return <ArmsExerciseCard
+                            return <ExerciseCard
                                 key={exercise.id}
                                 exercise={exercise}
                             />
@@ -78,7 +105,71 @@ export const ExerciseList = () => {
                     <>
                         <button type="button" className="btn btn-primary" onClick={() => setIsBackVisible(false)}>Back</button>
                         {backExercises?.map(exercise => {
-                            return <BackExerciseCard
+                            return <ExerciseCard
+                                key={exercise.id}
+                                exercise={exercise}
+                            />
+                        })}
+                    </>
+                }
+            </div>
+            <div className="calveCard">
+                {isCalveVisible === false ?
+                    <>
+                        <button type="button" className="btn btn-primary" onClick={() => setIsCalveVisible(true)}>Calves</button>
+                    </> :
+                    <>
+                        <button type="button" className="btn btn-primary" onClick={() => setIsCalveVisible(false)}>Calves</button>
+                        {calveExercises?.map(exercise => {
+                            return <ExerciseCard
+                                key={exercise.id}
+                                exercise={exercise}
+                            />
+                        })}
+                    </>
+                }
+            </div>
+            <div className="chestCard">
+                {isChestVisible === false ?
+                    <>
+                        <button type="button" className="btn btn-primary" onClick={() => setIsChestVisible(true)}>Chest</button>
+                    </> :
+                    <>
+                        <button type="button" className="btn btn-primary" onClick={() => setIsChestVisible(false)}>Chest</button>
+                        {chestExercises?.map(exercise => {
+                            return <ExerciseCard
+                                key={exercise.id}
+                                exercise={exercise}
+                            />
+                        })}
+                    </>
+                }
+            </div>
+            <div className="legCard">
+                {isLegVisible === false ?
+                    <>
+                        <button type="button" className="btn btn-primary" onClick={() => setIsLegVisible(true)}>Legs</button>
+                    </> :
+                    <>
+                        <button type="button" className="btn btn-primary" onClick={() => setIsLegVisible(false)}>Legs</button>
+                        {legExercises?.map(exercise => {
+                            return <ExerciseCard
+                                key={exercise.id}
+                                exercise={exercise}
+                            />
+                        })}
+                    </>
+                }
+            </div>
+            <div className="legCard">
+                {isShoulderVisible === false ?
+                    <>
+                        <button type="button" className="btn btn-primary" onClick={() => setIsShoulderVisible(true)}>Shoulders</button>
+                    </> :
+                    <>
+                        <button type="button" className="btn btn-primary" onClick={() => setIsShoulderVisible(false)}>Shoulders</button>
+                        {shoulderExercises?.map(exercise => {
+                            return <ExerciseCard
                                 key={exercise.id}
                                 exercise={exercise}
                             />

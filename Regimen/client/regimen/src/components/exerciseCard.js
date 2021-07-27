@@ -1,6 +1,6 @@
 import React from "react";
 
-export const AbsExerciseCard = ({ exercise }) => {
+export const ExerciseCard = ({ exercise }) => {
     return (
         <>
             <p>{exercise.name}</p>
