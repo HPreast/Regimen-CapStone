@@ -14,11 +14,11 @@ export default function ApplicationViews({ isLoggedIn }) {
                     {isLoggedIn ? <Dashboard /> : <Redirect to="/login" />}
                 </Route>
 
-                <Route path="/exercises">
+                <Route exact path="/exercises">
                     {isLoggedIn ? <ExerciseList /> : <Redirect to="/login" />}
                 </Route>
 
-                <Route exact path="/exercises/exerciseDetails/:exerciseId(\d+)">
+                <Route exact path="/exercises/exerciseDetails/:id">
                     {isLoggedIn ? <ExerciseDetails /> : <Redirect to="/login" />}
                 </Route>
 

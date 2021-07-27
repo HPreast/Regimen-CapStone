@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { GetExerciseById } from "../../modules/exerciseManager";
+import { ExerciseDetails } from "./exerciseDetails";
 
 export const ExerciseCard = ({ exercise }) => {
     return (
