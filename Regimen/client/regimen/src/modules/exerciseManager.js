@@ -69,3 +69,13 @@ export const GetShoulderExercises = () => {
     })
         .then(res => res.json())
 }
+
+export const GetExerciseById = (id) => {
+    return fetch(`${baseUrl}/exerciseinfo/${id}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        },
+    })
+        .then(res => res.json())
+}
