@@ -9,5 +9,6 @@ namespace Regimen.Repositories
         public void EditWorkout(Workout workout);
         public List<Workout> GetWorkouts();
         public void DeleteWorkout(int id);
+        public Workout GetWorkoutById(int id);
     }
 }

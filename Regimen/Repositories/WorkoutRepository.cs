@@ -93,6 +93,41 @@ namespace Regimen.Repositories
             }
         }
 
+        public Workout GetWorkoutById(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                                      SELECT 
+                                            id,
+                                            name,
+                                            userId
+                                      FROM Workout
+                                      WHERE id = @id
+                                      ";
+                    DbUtils.AddParameter(cmd, "@id", id);
+                    var reader = cmd.ExecuteReader();
+
+                    var workout = new Workout();
+                    if (reader.Read())
+                    {
+                        workout = new Workout()
+                        {
+                            id = DbUtils.GetInt(reader, "id"),
+                            userId = DbUtils.GetInt(reader, "userId"),
+                            name = DbUtils.GetString(reader, "name"),
+                        };
+                    }
+                    reader.Close();
+
+                    return workout;
+                }
+            }
+        }
+
         public void DeleteWorkout(int id)
         {
             using (var conn = Connection)
