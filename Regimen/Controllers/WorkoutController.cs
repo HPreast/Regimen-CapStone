@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Regimen.Models;
 using Regimen.Repositories;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace Regimen.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class WorkoutController : ControllerBase
@@ -30,6 +32,8 @@ namespace Regimen.Controllers
         [HttpPost]
         public IActionResult Add(Workout workout)
         {
+            var currentUser = GetCurrentUser();
+            workout.userId = currentUser.Id;
             _workoutRepository.AddNew(workout);
             return CreatedAtAction("Get", new { id = workout.id }, workout);
         }
@@ -54,11 +58,10 @@ namespace Regimen.Controllers
             _workoutRepository.DeleteWorkout(id);
             return NoContent();
         }
-
+        
         private User GetCurrentUser()
         {
-            var firebaseUserId = User?.FindFirst(ClaimTypes.NameIdentifier).Value;
-
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             if (firebaseUserId != null)
             {
                 return _userRepository.GetByFirebaseUserId(firebaseUserId);

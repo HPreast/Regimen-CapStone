@@ -18,7 +18,7 @@ namespace Regimen.Repositories
                     cmd.CommandText = @"
                         SELECT Id, FirebaseUserId, firstName AS FirstName, lastName AS LastName, Email
                           FROM [User]
-                         WHERE FirebaseUserId = @FirebaseuserId";
+                         WHERE FirebaseUserId = @FirebaseUserId";
 
                     DbUtils.AddParameter(cmd, "@FirebaseUserId", firebaseUserId);
 
