@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getAllWorkouts } from "../../modules/workoutManager";
+import { getAllWorkouts, deleteWorkout } from "../../modules/workoutManager";
 import { WorkoutCard } from "./workoutCard";
 import { Link } from "react-router-dom";
 
@@ -10,6 +10,14 @@ export const WorkoutList = () => {
         return getAllWorkouts()
             .then(res => setWorkouts(res))
 
+    }
+
+    const handleDeleteWorkout = (id) => {
+        let yes = window.confirm("Are you sure you want to delete this workout?")
+        if (yes === true) {
+            deleteWorkout(id)
+                .then(getAll())
+        }
     }
 
     useEffect(() => {
@@ -25,6 +33,7 @@ export const WorkoutList = () => {
                     return <WorkoutCard
                         key={workout.id}
                         workout={workout}
+                        handleDeleteWorkout={handleDeleteWorkout}
                     />
                 })}
             </div>

@@ -29,6 +29,11 @@ namespace Regimen.Controllers
         {
             return Ok(_workoutRepository.GetWorkouts());
         }
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
+        {
+            return Ok(_workoutRepository.GetWorkoutById(id));
+        }
         [HttpPost]
         public IActionResult Add(Workout workout)
         {
