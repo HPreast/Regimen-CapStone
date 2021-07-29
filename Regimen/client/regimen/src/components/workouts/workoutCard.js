@@ -1,19 +1,21 @@
 import React from "react";
-import { Card, CardBody } from "reactstrap";
+import { Card, CardBody, Button, ButtonGroup } from "reactstrap";
 import { Link } from "react-router-dom";
 
 export const WorkoutCard = ({ workout, handleDeleteWorkout }) => {
     return (
-        <>
-            <CardBody>
-                <Card>
+        <Card>
+            <Link to={`/workouts/workoutDetails/${workout.id}`}>
+                <CardBody>
                     {workout.name}
-                </Card>
+                </CardBody>
+            </Link>
+            <ButtonGroup>
                 <Link to={`/workouts/edit/${workout.id}`}>
-                    <button className="btn btn-primary">Edit</button>
+                    <Button className="btn btn-primary">Edit</Button>
                 </Link>
-                <button className="btn btn-primary" onClick={() => handleDeleteWorkout(workout.id)}>Delete</button>
-            </CardBody>
-        </>
+                <Button className="btn btn-danger" onClick={() => handleDeleteWorkout(workout.id)}>Delete</Button>
+            </ButtonGroup>
+        </Card>
     )
 }
