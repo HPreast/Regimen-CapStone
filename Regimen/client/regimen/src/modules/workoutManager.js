@@ -71,3 +71,15 @@ export const deleteWorkout = (id) => {
         })
     })
 }
+
+export const getWeekdays = () => {
+    return getToken().then((token) =>
+        fetch(`/api/DaysOfWeek`, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+        }))
+        .then(res => res.json());
+};
