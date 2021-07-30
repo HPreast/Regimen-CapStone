@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { GetAbsExercises, GetArmExercises, GetBackExercises, GetCalveExercises, GetChestExercises, GetLegExercises, GetShoulderExercises } from "../../modules/exerciseManager";
 import { ExerciseCard } from "./exerciseCard";
 
@@ -17,6 +18,8 @@ export const ExerciseList = () => {
     const [isLegVisible, setIsLegVisible] = useState(false);
     const [shoulderExercises, setShoulderExercises] = useState([]);
     const [isShoulderVisible, setIsShoulderVisible] = useState(false);
+
+    const { workoutDayId, id } = useParams();
 
     const getAbExercises = async () => {
         let array = await GetAbsExercises()
@@ -76,6 +79,8 @@ export const ExerciseList = () => {
                             return <ExerciseCard
                                 key={exercise.id}
                                 exercise={exercise}
+                                workoutDayId={workoutDayId}
+                                id={id}
                             />
                         })}
                     </>

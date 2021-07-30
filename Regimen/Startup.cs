@@ -35,6 +35,7 @@ namespace Regimen
             services.AddTransient<IWorkoutRepository, WorkoutRepository>();
             services.AddTransient<IDaysOfWeekRepository, DaysOfWeekRepository>();
             services.AddTransient<IWorkoutDayRepository, WorkoutDayRepository>();
+            services.AddTransient<IExerciseRepository, ExerciseRepository>();
             var googleTokenUrl = $"https://securetoken.google.com/{firebaseProjectId}";
 
             services

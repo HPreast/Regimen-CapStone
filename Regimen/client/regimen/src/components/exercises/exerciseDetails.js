@@ -1,11 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useParams, useHistory } from "react-router";
+import { Button } from "reactstrap";
 import { GetExerciseById } from "../../modules/exerciseManager";
+import { addExercise } from "../../modules/myExerciseManager";
 
 export const ExerciseDetails = () => {
     const [exercise, setExercise] = useState({});
+    const [myExercise, setMyExercise] = useState({
+        id: 0,
+        name: "",
+        workoutDayId: 0,
+        apiId: 0
+    })
 
-    const { id } = useParams()
+    const history = useHistory();
+
+    const { id, workoutDayId, workoutId } = useParams()
 
     const displayDetails = () => {
         GetExerciseById(id)
@@ -13,6 +23,16 @@ export const ExerciseDetails = () => {
                 res.description = res.description.replace(/(<([^>]+)>)/ig, "")
                 setExercise(res)
             })
+    }
+
+    const handleAdd = () => {
+        let newExercise = { ...myExercise }
+        newExercise.name = exercise.name
+        newExercise.workoutDayId = workoutDayId
+        newExercise.apiId = exercise.id
+        setMyExercise(newExercise);
+        addExercise(newExercise)
+            .then(() => history.push(`/workouts/workoutDetails/${workoutId}`))
     }
 
     useEffect(() => {
@@ -62,6 +82,7 @@ export const ExerciseDetails = () => {
                         })}
                     </>}
             </div>
+            <Button onClick={handleAdd}>Add to Workout</Button>
         </>
     )
 }
