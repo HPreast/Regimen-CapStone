@@ -23,18 +23,21 @@ namespace Regimen.Repositories
                                         INSERT INTO WorkoutDay(
                                                                 dayId,
                                                                 workoutId,
+                                                                dayName,
                                                                 [name]
                                                                )
                                         OUTPUT INSERTED.ID
                                         VALUES (
                                                 @dayId,
                                                 @workoutId,
+                                                @dayName,
                                                 @name
                                                 );
                                       ";
                     cmd.Parameters.AddWithValue("@dayId", workoutDay.dayId);
                     cmd.Parameters.AddWithValue("@workoutId", workoutDay.workoutId);
                     cmd.Parameters.AddWithValue("@name", workoutDay.name);
+                    cmd.Parameters.AddWithValue("@dayName", workoutDay.dayName);
 
                     workoutDay.id = (int)cmd.ExecuteScalar();
                 }
@@ -53,6 +56,7 @@ namespace Regimen.Repositories
                                                 id,
                                                 [name],
                                                 dayId,
+                                                dayName,
                                                 workoutId
                                         FROM WorkoutDay
                                         ORDER BY id
@@ -69,12 +73,94 @@ namespace Regimen.Repositories
                             name = DbUtils.GetString(reader, "name"),
                             dayId = DbUtils.GetInt(reader, "dayId"),
                             workoutId = DbUtils.GetInt(reader, "workoutId"),
+                            dayName = DbUtils.GetString(reader, "dayName"),
                         };
                         days.Add(workoutDay);
                     }
                     reader.Close();
 
                     return days;
+                }
+            }
+        }
+
+        public List<WorkoutDay> GetWorkoutDaysByWorkoutId(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                                        SELECT 
+                                                id,
+                                                [name],
+                                                dayId,
+                                                dayName,
+                                                workoutId
+                                        FROM WorkoutDay
+                                        WHERE @id = workoutId
+                                        ORDER BY id
+                                      ";
+                    DbUtils.AddParameter(cmd, "@id", id);
+                    var reader = cmd.ExecuteReader();
+
+                    var days = new List<WorkoutDay>();
+                    var workoutDay = new WorkoutDay();
+                    while (reader.Read())
+                    {
+                        workoutDay = new WorkoutDay()
+                        {
+                            id = DbUtils.GetInt(reader, "id"),
+                            name = DbUtils.GetString(reader, "name"),
+                            dayId = DbUtils.GetInt(reader, "dayId"),
+                            workoutId = DbUtils.GetInt(reader, "workoutId"),
+                            dayName = DbUtils.GetString(reader, "dayName"),
+                        };
+                        days.Add(workoutDay);
+                    }
+                    reader.Close();
+
+                    return days;
+                }
+            }
+        }
+
+        public void EditWorkoutDay(WorkoutDay workoutDay)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                                        UPDATE WorkoutDay
+                                        Set name = @name
+                                        WHERE id = @id
+                                      ";
+                    DbUtils.AddParameter(cmd, "@name", workoutDay.name);
+                    DbUtils.AddParameter(cmd, "@id", workoutDay.id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void DeleteWorkoutDay(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                                       DELETE WorkoutDay
+                                       FROM WorkoutDay
+                                       WHERE @id = id
+                                      ";
+                    DbUtils.AddParameter(cmd, "@id", id);
+
+                    cmd.ExecuteNonQuery();
                 }
             }
         }

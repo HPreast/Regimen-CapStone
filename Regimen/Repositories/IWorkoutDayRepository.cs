@@ -7,5 +7,8 @@ namespace Regimen.Repositories
     {
         public void AddNewDay(WorkoutDay workoutDay);
         public List<WorkoutDay> GetWorkoutDays();
+        public void EditWorkoutDay(WorkoutDay workoutDay);
+        public void DeleteWorkoutDay(int id);
+        public List<WorkoutDay> GetWorkoutDaysByWorkoutId(int id);
     }
 }

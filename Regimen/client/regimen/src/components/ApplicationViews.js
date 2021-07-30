@@ -38,7 +38,15 @@ export default function ApplicationViews({ isLoggedIn }) {
                     {isLoggedIn ? <ExerciseList /> : <Redirect to="/login" />}
                 </Route>
 
+                <Route exact path="/exercises/:workoutDayId/:id">
+                    {isLoggedIn ? <ExerciseList /> : <Redirect to="/login" />}
+                </Route>
+
                 <Route exact path="/exercises/exerciseDetails/:id">
+                    {isLoggedIn ? <ExerciseDetails /> : <Redirect to="/login" />}
+                </Route>
+
+                <Route exact path="/exercises/exerciseDetails/:id/:workoutDayId/:workoutId">
                     {isLoggedIn ? <ExerciseDetails /> : <Redirect to="/login" />}
                 </Route>
 

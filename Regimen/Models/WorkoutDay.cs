@@ -13,5 +13,6 @@ namespace Regimen.Models
         public int dayId { get; set; }
         public int workoutId { get; set; }
         public string name { get; set; }
+        public string dayName { get; set; }
     }
 }
