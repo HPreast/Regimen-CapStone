@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { GetAbsExercises, GetArmExercises, GetBackExercises, GetCalveExercises, GetChestExercises, GetLegExercises, GetShoulderExercises } from "../../modules/exerciseManager";
-import { ExerciseCard } from "./exerciseCard";
+import { ExerciseCardToAdd } from "./exerciseCardToAdd";
 
-export const ExerciseList = () => {
+export const ExerciseListToAdd = () => {
     const [abExercises, setAbExercises] = useState([]);
     const [isAbsVisible, setIsAbsVisible] = useState(false);
     const [armExercises, setArmExercises] = useState([]);
@@ -19,7 +19,7 @@ export const ExerciseList = () => {
     const [shoulderExercises, setShoulderExercises] = useState([]);
     const [isShoulderVisible, setIsShoulderVisible] = useState(false);
 
-    // const { workoutDayId, id } = useParams();
+    const { workoutDayId, id } = useParams();
 
     const getAbExercises = async () => {
         let array = await GetAbsExercises()
@@ -76,9 +76,11 @@ export const ExerciseList = () => {
                     <>
                         <button type="button" className="btn btn-primary" onClick={() => setIsAbsVisible(false)}>Abs</button>
                         {abExercises?.map(exercise => {
-                            return <ExerciseCard
+                            return <ExerciseCardToAdd
                                 key={exercise.id}
                                 exercise={exercise}
+                                workoutDayId={workoutDayId}
+                                id={id}
                             />
                         })}
                     </>
@@ -92,9 +94,11 @@ export const ExerciseList = () => {
                     <>
                         <button type="button" className="btn btn-primary" onClick={() => setIsArmsVisible(false)}>Arms</button>
                         {armExercises?.map(exercise => {
-                            return <ExerciseCard
+                            return <ExerciseCardToAdd
                                 key={exercise.id}
                                 exercise={exercise}
+                                workoutDayId={workoutDayId}
+                                id={id}
                             />
                         })}
                     </>
@@ -108,9 +112,11 @@ export const ExerciseList = () => {
                     <>
                         <button type="button" className="btn btn-primary" onClick={() => setIsBackVisible(false)}>Back</button>
                         {backExercises?.map(exercise => {
-                            return <ExerciseCard
+                            return <ExerciseCardToAdd
                                 key={exercise.id}
                                 exercise={exercise}
+                                workoutDayId={workoutDayId}
+                                id={id}
                             />
                         })}
                     </>
@@ -124,9 +130,11 @@ export const ExerciseList = () => {
                     <>
                         <button type="button" className="btn btn-primary" onClick={() => setIsCalveVisible(false)}>Calves</button>
                         {calveExercises?.map(exercise => {
-                            return <ExerciseCard
+                            return <ExerciseCardToAdd
                                 key={exercise.id}
                                 exercise={exercise}
+                                workoutDayId={workoutDayId}
+                                id={id}
                             />
                         })}
                     </>
@@ -140,9 +148,11 @@ export const ExerciseList = () => {
                     <>
                         <button type="button" className="btn btn-primary" onClick={() => setIsChestVisible(false)}>Chest</button>
                         {chestExercises?.map(exercise => {
-                            return <ExerciseCard
+                            return <ExerciseCardToAdd
                                 key={exercise.id}
                                 exercise={exercise}
+                                workoutDayId={workoutDayId}
+                                id={id}
                             />
                         })}
                     </>
@@ -156,9 +166,11 @@ export const ExerciseList = () => {
                     <>
                         <button type="button" className="btn btn-primary" onClick={() => setIsLegVisible(false)}>Legs</button>
                         {legExercises?.map(exercise => {
-                            return <ExerciseCard
+                            return <ExerciseCardToAdd
                                 key={exercise.id}
                                 exercise={exercise}
+                                workoutDayId={workoutDayId}
+                                id={id}
                             />
                         })}
                     </>
@@ -172,9 +184,11 @@ export const ExerciseList = () => {
                     <>
                         <button type="button" className="btn btn-primary" onClick={() => setIsShoulderVisible(false)}>Shoulders</button>
                         {shoulderExercises?.map(exercise => {
-                            return <ExerciseCard
+                            return <ExerciseCardToAdd
                                 key={exercise.id}
                                 exercise={exercise}
+                                workoutDayId={workoutDayId}
+                                id={id}
                             />
                         })}
                     </>

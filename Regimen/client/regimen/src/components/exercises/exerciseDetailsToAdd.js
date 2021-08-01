@@ -4,7 +4,7 @@ import { Button } from "reactstrap";
 import { GetExerciseById } from "../../modules/exerciseManager";
 import { addExercise } from "../../modules/myExerciseManager";
 
-export const ExerciseDetails = () => {
+export const ExerciseDetailsToAdd = () => {
     const [exercise, setExercise] = useState({});
     const [myExercise, setMyExercise] = useState({
         id: 0,
@@ -25,15 +25,15 @@ export const ExerciseDetails = () => {
             })
     }
 
-    // const handleAdd = () => {
-    //     let newExercise = { ...myExercise }
-    //     newExercise.name = exercise.name
-    //     newExercise.workoutDayId = workoutDayId
-    //     newExercise.apiId = exercise.id
-    //     setMyExercise(newExercise);
-    //     addExercise(newExercise)
-    //         .then(() => history.push(`/workouts/workoutDetails/${workoutId}`))
-    // }
+    const handleAdd = () => {
+        let newExercise = { ...myExercise }
+        newExercise.name = exercise.name
+        newExercise.workoutDayId = workoutDayId
+        newExercise.apiId = exercise.id
+        setMyExercise(newExercise);
+        addExercise(newExercise)
+            .then(() => history.push(`/workouts/workoutDetails/${workoutId}`))
+    }
 
     useEffect(() => {
         displayDetails()
@@ -82,6 +82,7 @@ export const ExerciseDetails = () => {
                         })}
                     </>}
             </div>
+            <Button onClick={handleAdd}>Add to Workout</Button>
         </>
     )
 }

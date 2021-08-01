@@ -1,7 +1,7 @@
-import { Modal, ModalHeader, ModalBody, ModalFooter, Button, Input, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, ModalFooter, Button, ButtonGroup, Input, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import React, { useEffect, useState } from "react";
 import { getWeekdays } from '../../modules/workoutManager';
-import { addWorkoutDay } from '../../modules/workoutDayManager';
+import { editWorkoutDay, getWorkoutDaysByWorkoutId, deleteWorkoutDay } from '../../modules/workoutDayManager';
 import { Link, useHistory } from "react-router-dom"
 import { CardBody, Card } from "reactstrap";
 import { getExercises, getExercisesByWorkoutDay } from '../../modules/myExerciseManager';
@@ -9,6 +9,7 @@ import { MyExercises } from '../exercises/myExercises';
 
 export const WorkoutdayCard = ({ day, id }) => {
     const [workoutDay, setWorkoutDay] = useState({
+        id: 0,
         workoutId: 0,
         name: "",
         dayId: 0,
@@ -52,11 +53,20 @@ export const WorkoutdayCard = ({ day, id }) => {
         setWorkoutDay(newDay)
     }
 
+    const handleDelete = (id) => {
+        let yes = window.confirm("Are you sure you want to delete this day?")
+        if (yes === true) {
+            deleteWorkoutDay(id)
+        }
+    }
+
     const handleSave = () => {
         let newDay = { ...workoutDay }
-        // newDay.workoutId = workoutDay.id
-        addWorkoutDay(workoutDay)
-            .then(() => setSaveState(!saveState))
+        newDay.id = day.id
+        newDay.workoutId = id
+        editWorkoutDay(newDay)
+        // getWorkoutDaysByWorkoutId(id)
+        // .then(() => setSaveState(!saveState))
         // .then(() => history.push(`/workouts/workoutDetails/${id}`))
     }
 
@@ -71,21 +81,24 @@ export const WorkoutdayCard = ({ day, id }) => {
                     <h2>{day.name}</h2>
                     <h6>{day.dayName}</h6>
                 </Card>
+                <Link to={`/exercises/${day.id}/${id}`}><Button>Add an Exercise</Button></Link>
                 <div>
                     {exercises?.map(exercise => {
                         return <MyExercises key={exercise.id} exercise={exercise} />
                     })}
                 </div>
-                <Link to={`/exercises/${day.id}/${id}`}><Button>Add an Exercise</Button></Link>
+                <ButtonGroup>
+                    <Button className="btn btn-success mx-5 mt-3" onClick={() => {
+                        toggleModal();
+                        fetchDays();
+                    }} disabled={isLoading}>Edit</Button>
+                    <Button className="btn btn-danger" onClick={() => handleDelete(day.id)}>Delete</Button>
+                </ButtonGroup>
             </CardBody>
-            <Button className="btn btn-success mx-5 mt-3" onClick={() => {
-                toggleModal();
-                fetchDays();
-            }} disabled={isLoading}>Edit</Button>
             <Modal isOpen={modal} toggle={toggleModal}>
-                <ModalHeader toggle={toggleModal}>New Workout Day</ModalHeader>
+                <ModalHeader toggle={toggleModal}>Edit {day.name}</ModalHeader>
                 <ModalBody>
-                    <Input type="text" placeholder="Name..." onChange={handleInputChange}></Input>
+                    <Input type="text" placeholder={day.name} onChange={handleInputChange}></Input>
                     <Dropdown isOpen={toggle.workoutDay} toggle={() => setToggle({ workoutDay: !toggle.workoutDay })}>
                         <DropdownToggle caret>
                             {workoutDay.dayName ? workoutDay.dayName : <>Weekday</>}

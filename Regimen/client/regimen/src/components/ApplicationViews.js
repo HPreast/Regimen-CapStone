@@ -9,6 +9,8 @@ import Register from "./register";
 import { WorkoutForm } from "./workouts/workoutForm";
 import { WorkoutEdit } from "./workouts/workoutEdit";
 import { WorkoutDetails } from "./workouts/workoutDetails";
+import { ExerciseDetailsToAdd } from "./exercises/exerciseDetailsToAdd";
+import { ExerciseListToAdd } from "./exercises/exerciseListToAdd";
 
 export default function ApplicationViews({ isLoggedIn }) {
     return (
@@ -39,7 +41,7 @@ export default function ApplicationViews({ isLoggedIn }) {
                 </Route>
 
                 <Route exact path="/exercises/:workoutDayId/:id">
-                    {isLoggedIn ? <ExerciseList /> : <Redirect to="/login" />}
+                    {isLoggedIn ? <ExerciseListToAdd /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route exact path="/exercises/exerciseDetails/:id">
@@ -47,7 +49,7 @@ export default function ApplicationViews({ isLoggedIn }) {
                 </Route>
 
                 <Route exact path="/exercises/exerciseDetails/:id/:workoutDayId/:workoutId">
-                    {isLoggedIn ? <ExerciseDetails /> : <Redirect to="/login" />}
+                    {isLoggedIn ? <ExerciseDetailsToAdd /> : <Redirect to="/login" />}
                 </Route>
 
                 <Route path="/login">
