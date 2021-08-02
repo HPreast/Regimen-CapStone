@@ -5,9 +5,10 @@ import { editWorkoutDay, getWorkoutDaysByWorkoutId, deleteWorkoutDay } from '../
 import { Link, useHistory } from "react-router-dom"
 import { CardBody, Card } from "reactstrap";
 import { getExercises, getExercisesByWorkoutDay } from '../../modules/myExerciseManager';
+import { deleteExercise } from "../../modules/myExerciseManager";
 import { MyExercises } from '../exercises/myExercises';
 
-export const WorkoutdayCard = ({ day, id }) => {
+export const WorkoutdayCard = ({ day, id, handleDelete, saveState, setSaveState }) => {
     const [workoutDay, setWorkoutDay] = useState({
         id: 0,
         workoutId: 0,
@@ -21,8 +22,12 @@ export const WorkoutdayCard = ({ day, id }) => {
     const [toggle, setToggle] = useState({
         workoutDay: false
     })
-    const [saveState, setSaveState] = useState(false);
+    // const [saveState, setSaveState] = useState(false);
     const [exercises, setExercises] = useState([]);
+
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
 
     const history = useHistory();
 
@@ -53,26 +58,26 @@ export const WorkoutdayCard = ({ day, id }) => {
         setWorkoutDay(newDay)
     }
 
-    const handleDelete = (id) => {
-        let yes = window.confirm("Are you sure you want to delete this day?")
-        if (yes === true) {
-            deleteWorkoutDay(id)
-        }
-    }
-
-    const handleSave = () => {
+    const handleEdit = () => {
+        // debugger
         let newDay = { ...workoutDay }
         newDay.id = day.id
         newDay.workoutId = id
         editWorkoutDay(newDay)
-        // getWorkoutDaysByWorkoutId(id)
-        // .then(() => setSaveState(!saveState))
-        // .then(() => history.push(`/workouts/workoutDetails/${id}`))
+            .then(() => setSaveState(!saveState))
+    }
+
+    const handleDeleteExercise = (id) => {
+        let yes = window.confirm("Are you sure you want to remove this exercise from your workout?")
+        if (yes === true) {
+            deleteExercise(id)
+                .then(() => setSaveState(!saveState))
+        }
     }
 
     useEffect(() => {
-        fetchExercises();
-    }, [])
+        sleep(600).then(() => fetchExercises());
+    }, [saveState])
 
     return (
         <>
@@ -84,7 +89,7 @@ export const WorkoutdayCard = ({ day, id }) => {
                 <Link to={`/exercises/${day.id}/${id}`}><Button>Add an Exercise</Button></Link>
                 <div>
                     {exercises?.map(exercise => {
-                        return <MyExercises key={exercise.id} exercise={exercise} />
+                        return <MyExercises key={exercise.id} exercise={exercise} handleDeleteExercise={handleDeleteExercise} />
                     })}
                 </div>
                 <ButtonGroup>
@@ -98,7 +103,7 @@ export const WorkoutdayCard = ({ day, id }) => {
             <Modal isOpen={modal} toggle={toggleModal}>
                 <ModalHeader toggle={toggleModal}>Edit {day.name}</ModalHeader>
                 <ModalBody>
-                    <Input type="text" placeholder={day.name} onChange={handleInputChange}></Input>
+                    <Input type="text" placeholder={day.name} onChange={handleInputChange} defaultValue={day.name}></Input>
                     <Dropdown isOpen={toggle.workoutDay} toggle={() => setToggle({ workoutDay: !toggle.workoutDay })}>
                         <DropdownToggle caret>
                             {workoutDay.dayName ? workoutDay.dayName : <>Weekday</>}
@@ -106,14 +111,14 @@ export const WorkoutdayCard = ({ day, id }) => {
                         <DropdownMenu>
                             <DropdownItem header>Choose a Day</DropdownItem>
                             {weekdays.map(day => {
-                                return <DropdownItem id={day.id} key={day.id} onClick={handleDropdown}>{day.name}</DropdownItem>
+                                return <DropdownItem id={day.id} key={day.id} onClick={handleDropdown} defaultValue={day.name}>{day.name}</DropdownItem>
                             })}
                         </DropdownMenu>
                     </Dropdown>
                 </ModalBody>
                 <ModalFooter>
                     <Button color="success" onClick={() => {
-                        handleSave()
+                        handleEdit()
                         toggleModal()
                     }} disabled={isLoading}>Update Day</Button>{' '}
                     <Button color="secondary" onClick={toggleModal}>Cancel</Button>
