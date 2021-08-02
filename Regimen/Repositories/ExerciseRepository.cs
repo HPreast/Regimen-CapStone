@@ -11,7 +11,7 @@ namespace Regimen.Repositories
     public class ExerciseRepository : BaseRepository, IExerciseRepository
     {
         public ExerciseRepository(IConfiguration configuration) : base(configuration) { }
-        
+
         public void AddExercise(Exercise exercise)
         {
             using (var conn = Connection)
@@ -54,7 +54,7 @@ namespace Regimen.Repositories
 
                     var exercises = new List<Exercise>();
                     var exercise = new Exercise();
-                    while(reader.Read())
+                    while (reader.Read())
                     {
                         exercise = new Exercise()
                         {
@@ -115,17 +115,19 @@ namespace Regimen.Repositories
         public void DeleteExercise(int id)
         {
             using (var conn = Connection)
-                conn.Open();
-            using (var cmd = Connection.CreateCommand())
             {
-                cmd.CommandText = @"
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
                                     DELETE Exercises
                                     FROM Exercises
                                     WHERE @id = id
                                   ";
-                DbUtils.AddParameter(cmd, "@id", id);
+                    DbUtils.AddParameter(cmd, "@id", id);
 
-                cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
+                }
             }
         }
     }

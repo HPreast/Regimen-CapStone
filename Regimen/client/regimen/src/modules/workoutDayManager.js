@@ -42,3 +42,28 @@ export const addWorkoutDay = (workoutDay) => {
             .then(res => res.json());
     })
 }
+
+export const editWorkoutDay = (workoutDay) => {
+    return getToken().then((token) => {
+        return fetch(`${_apiUrl}/${workoutDay.id}`, {
+            method: "PUT",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(workoutDay)
+        })
+    })
+}
+
+export const deleteWorkoutDay = (id) => {
+    return getToken().then((token) => {
+        fetch(`${_apiUrl}/${id}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+            }
+        })
+    })
+}

@@ -135,10 +135,14 @@ namespace Regimen.Repositories
                 {
                     cmd.CommandText = @"
                                         UPDATE WorkoutDay
-                                        Set name = @name
+                                        Set name = @name,
+                                            dayName = @dayName,
+                                            dayId = @dayId
                                         WHERE id = @id
                                       ";
                     DbUtils.AddParameter(cmd, "@name", workoutDay.name);
+                    DbUtils.AddParameter(cmd, "@dayName", workoutDay.dayName);
+                    DbUtils.AddParameter(cmd, "@dayId", workoutDay.dayId);
                     DbUtils.AddParameter(cmd, "@id", workoutDay.id);
 
                     cmd.ExecuteNonQuery();
