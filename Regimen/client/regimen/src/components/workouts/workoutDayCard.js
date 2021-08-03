@@ -7,6 +7,9 @@ import { CardBody, Card } from "reactstrap";
 import { getExercises, getExercisesByWorkoutDay } from '../../modules/myExerciseManager';
 import { deleteExercise } from "../../modules/myExerciseManager";
 import { MyExercises } from '../exercises/myExercises';
+import { faEdit } from "@fortawesome/free-solid-svg-icons/faEdit";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const WorkoutdayCard = ({ day, id, handleDelete, saveState, setSaveState }) => {
     const [workoutDay, setWorkoutDay] = useState({
@@ -87,8 +90,8 @@ export const WorkoutdayCard = ({ day, id, handleDelete, saveState, setSaveState 
                         <Button className="btn btn-success mx-5 mt-3" onClick={() => {
                             toggleModal();
                             fetchDays();
-                        }} disabled={isLoading}>Edit</Button>
-                        <Button className="btn btn-danger" onClick={() => handleDelete(day.id)}>Delete</Button>
+                        }} disabled={isLoading}><FontAwesomeIcon icon={faEdit}></FontAwesomeIcon></Button>
+                        <Button className="btn btn-danger" onClick={() => handleDelete(day.id)}><FontAwesomeIcon icon={faTrash}></FontAwesomeIcon></Button>
                     </ButtonGroup>
                     <h3>{day.name}</h3>
                     <h6>{day.dayName}</h6>
