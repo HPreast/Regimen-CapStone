@@ -25,10 +25,6 @@ export const WorkoutdayCard = ({ day, id, handleDelete, saveState, setSaveState 
     // const [saveState, setSaveState] = useState(false);
     const [exercises, setExercises] = useState([]);
 
-    function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
     const history = useHistory();
 
 
@@ -71,13 +67,13 @@ export const WorkoutdayCard = ({ day, id, handleDelete, saveState, setSaveState 
         let yes = window.confirm("Are you sure you want to remove this exercise from your workout?")
         if (yes === true) {
             deleteExercise(id)
-                .then(() => setSaveState(!saveState))
+                .then(() => fetchExercises())
         }
     }
 
     useEffect(() => {
-        sleep(600).then(() => fetchExercises());
-    }, [saveState])
+        fetchExercises();
+    }, [])
 
     return (
         <>
@@ -106,7 +102,7 @@ export const WorkoutdayCard = ({ day, id, handleDelete, saveState, setSaveState 
                     <Input type="text" placeholder={day.name} onChange={handleInputChange} defaultValue={day.name}></Input>
                     <Dropdown isOpen={toggle.workoutDay} toggle={() => setToggle({ workoutDay: !toggle.workoutDay })}>
                         <DropdownToggle caret>
-                            {workoutDay.dayName ? workoutDay.dayName : <>Weekday</>}
+                            {day.dayName ? day.dayName : <>Weekday</>}
                         </DropdownToggle>
                         <DropdownMenu>
                             <DropdownItem header>Choose a Day</DropdownItem>

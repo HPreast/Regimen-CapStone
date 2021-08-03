@@ -25,10 +25,6 @@ export const WorkoutDetails = () => {
 
     const { id } = useParams();
 
-    function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
     const displayDetails = () => {
         getWorkoutById(id)
             .then(res => setWorkout(res))
@@ -70,13 +66,13 @@ export const WorkoutDetails = () => {
         let yes = window.confirm("Are you sure you want to delete this day?")
         if (yes === true) {
             deleteWorkoutDay(id)
-                .then(() => setSaveState(!saveState))
+                .then(() => fetchWorkoutDays())
         }
     }
 
     useEffect(() => {
         displayDetails();
-        sleep(600).then(() => fetchWorkoutDays());
+        fetchWorkoutDays();
     }, [saveState])
 
     return (
