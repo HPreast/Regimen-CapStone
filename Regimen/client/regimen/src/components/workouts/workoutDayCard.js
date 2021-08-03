@@ -24,6 +24,7 @@ export const WorkoutdayCard = ({ day, id, handleDelete, saveState, setSaveState 
     })
     // const [saveState, setSaveState] = useState(false);
     const [exercises, setExercises] = useState([]);
+    const [isVisible, setIsVisible] = useState(false);
 
     const history = useHistory();
 
@@ -91,13 +92,26 @@ export const WorkoutdayCard = ({ day, id, handleDelete, saveState, setSaveState 
                     </ButtonGroup>
                     <h3>{day.name}</h3>
                     <h6>{day.dayName}</h6>
-                    <Link to={`/exercises/${day.id}/${id}`}><Button>Add an Exercise</Button></Link>
+                    {isVisible === false ?
+                        <>
+                            <ButtonGroup>
+                                <Link to={`/exercises/${day.id}/${id}`}><Button className="button">Add an Exercise</Button></Link>
+                                <Button className="button" onClick={() => setIsVisible(true)}>View {day.name} Exercises</Button>
+                            </ButtonGroup>
+
+                        </> :
+                        <>
+                            <ButtonGroup>
+                                <Link to={`/exercises/${day.id}/${id}`}><Button className="button">Add an Exercise</Button></Link>
+                                <Button className="button" onClick={() => setIsVisible(false)}>View {day.name} Exercises</Button>
+                            </ButtonGroup>
+                            <div>
+                                {exercises?.map(exercise => {
+                                    return <MyExercises key={exercise.id} exercise={exercise} handleDeleteExercise={handleDeleteExercise} />
+                                })}
+                            </div>
+                        </>}
                 </Card>
-                <div>
-                    {exercises?.map(exercise => {
-                        return <MyExercises key={exercise.id} exercise={exercise} handleDeleteExercise={handleDeleteExercise} />
-                    })}
-                </div>
             </CardBody>
             <Modal isOpen={modal} toggle={toggleModal}>
                 <ModalHeader toggle={toggleModal}>Edit {day.name}</ModalHeader>

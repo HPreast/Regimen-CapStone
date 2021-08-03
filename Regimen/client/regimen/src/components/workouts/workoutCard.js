@@ -14,7 +14,7 @@ export const WorkoutCard = ({ workout, handleDeleteWorkout }) => {
                 <Link to={`/workouts/edit/${workout.id}`}>
                     <Button className="btn btn-primary">Edit</Button>
                 </Link>
-                <Button className="btn btn-danger" onClick={() => handleDeleteWorkout(workout.id)}>Delete</Button>
+                <Button className="btn btn-danger" onClick={() => handleDeleteWorkout(workout.id)}><i className="fa fa-trash">Delete</i></Button>
             </ButtonGroup>
         </Card>
     )

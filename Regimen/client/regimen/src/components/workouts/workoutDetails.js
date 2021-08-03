@@ -78,7 +78,7 @@ export const WorkoutDetails = () => {
     return (
         <>
             <h2>{workout.name}</h2>
-            <Button className="btn btn-success mx-5 mt-3" onClick={() => {
+            <Button className="button" onClick={() => {
                 toggleModal();
                 fetchDays();
             }} disabled={isLoading}>Add New Day</Button>

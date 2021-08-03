@@ -28,7 +28,9 @@
   color: #61dafb;
   /* color: #6FAE57 !important; */
 }
-
+.nav-link a {
+  color: #6FAE57;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -46,6 +48,7 @@ body {
 .button {
   background-color: #6FAE57 !important;
   color:#FFFFFF !important;
+  width: 100%;
 }
 
 .card {
