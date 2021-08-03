@@ -4,7 +4,7 @@ export const ExerciseCard = ({ exercise, workoutDayId, id }) => {
     return (
         <>
             <a href={`/exercises/exerciseDetails/${exercise.id}`}>
-                <div>
+                <div className="exercise">
                     {exercise.name}
                 </div>
             </a>

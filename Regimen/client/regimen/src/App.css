@@ -26,6 +26,7 @@
 
 .App-link {
   color: #61dafb;
+  /* color: #6FAE57 !important; */
 }
 
 @keyframes App-logo-spin {
@@ -36,3 +37,49 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  background-color: #5C6673 !important;
+  color: #FFFFFF !important;
+}
+
+.button {
+  background-color: #6FAE57 !important;
+  color:#FFFFFF !important;
+}
+
+.card {
+  background-color: #5C6673 !important;
+  border: solid 1px #6FAE57 !important;
+  color: #FFFFFF !important;
+  margin: 40px;
+  padding: 5px;
+}
+
+.exercise {
+  background-color: #5C6673 !important;
+  border: solid 1px #6FAE57 !important;
+  color: #FFFFFF !important;
+  margin: 10px;
+  padding: 6px;
+}
+
+.exerciseDetails {
+  margin-top: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.exerciseHeader {
+  margin-top: 25px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 30px !important;
+}
+/* .modal {
+  color: #282c34;
+} */

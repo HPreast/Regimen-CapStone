@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { GetAbsExercises, GetArmExercises, GetBackExercises, GetCalveExercises, GetChestExercises, GetLegExercises, GetShoulderExercises } from "../../modules/exerciseManager";
 import { ExerciseCardToAdd } from "./exerciseCardToAdd";
+import { Button } from "reactstrap";
 
 export const ExerciseListToAdd = () => {
     const [abExercises, setAbExercises] = useState([]);
@@ -68,13 +69,14 @@ export const ExerciseListToAdd = () => {
 
     return (
         <>
-            <div className="absCard">
+            <h2>Exercises</h2>
+            <div className="card">
                 {isAbsVisible === false ?
                     <>
-                        <button type="button" className="btn btn-primary" onClick={() => setIsAbsVisible(true)}>Abs</button>
+                        <Button type="button" className="btn btn-primary" onClick={() => setIsAbsVisible(true)}>Abs</Button>
                     </> :
                     <>
-                        <button type="button" className="btn btn-primary" onClick={() => setIsAbsVisible(false)}>Abs</button>
+                        <Button type="button" className="btn btn-primary" onClick={() => setIsAbsVisible(false)}>Abs</Button>
                         {abExercises?.map(exercise => {
                             return <ExerciseCardToAdd
                                 key={exercise.id}
@@ -86,13 +88,13 @@ export const ExerciseListToAdd = () => {
                     </>
                 }
             </div>
-            <div className="armsCard">
+            <div className="card">
                 {isArmsVisible === false ?
                     <>
-                        <button type="button" className="btn btn-primary" onClick={() => setIsArmsVisible(true)}>Arms</button>
+                        <Button type="button" className="btn btn-primary" onClick={() => setIsArmsVisible(true)}>Arms</Button>
                     </> :
                     <>
-                        <button type="button" className="btn btn-primary" onClick={() => setIsArmsVisible(false)}>Arms</button>
+                        <Button type="button" className="btn btn-primary" onClick={() => setIsArmsVisible(false)}>Arms</Button>
                         {armExercises?.map(exercise => {
                             return <ExerciseCardToAdd
                                 key={exercise.id}
@@ -104,13 +106,13 @@ export const ExerciseListToAdd = () => {
                     </>
                 }
             </div>
-            <div className="backCard">
+            <div className="card">
                 {isBackVisible === false ?
                     <>
-                        <button type="button" className="btn btn-primary" onClick={() => setIsBackVisible(true)}>Back</button>
+                        <Button type="button" className="btn btn-primary" onClick={() => setIsBackVisible(true)}>Back</Button>
                     </> :
                     <>
-                        <button type="button" className="btn btn-primary" onClick={() => setIsBackVisible(false)}>Back</button>
+                        <Button type="button" className="btn btn-primary" onClick={() => setIsBackVisible(false)}>Back</Button>
                         {backExercises?.map(exercise => {
                             return <ExerciseCardToAdd
                                 key={exercise.id}
@@ -122,13 +124,13 @@ export const ExerciseListToAdd = () => {
                     </>
                 }
             </div>
-            <div className="calveCard">
+            <div className="card">
                 {isCalveVisible === false ?
                     <>
-                        <button type="button" className="btn btn-primary" onClick={() => setIsCalveVisible(true)}>Calves</button>
+                        <Button type="button" className="btn btn-primary" onClick={() => setIsCalveVisible(true)}>Calves</Button>
                     </> :
                     <>
-                        <button type="button" className="btn btn-primary" onClick={() => setIsCalveVisible(false)}>Calves</button>
+                        <Button type="button" className="btn btn-primary" onClick={() => setIsCalveVisible(false)}>Calves</Button>
                         {calveExercises?.map(exercise => {
                             return <ExerciseCardToAdd
                                 key={exercise.id}
@@ -140,13 +142,13 @@ export const ExerciseListToAdd = () => {
                     </>
                 }
             </div>
-            <div className="chestCard">
+            <div className="card">
                 {isChestVisible === false ?
                     <>
-                        <button type="button" className="btn btn-primary" onClick={() => setIsChestVisible(true)}>Chest</button>
+                        <Button type="button" className="btn btn-primary" onClick={() => setIsChestVisible(true)}>Chest</Button>
                     </> :
                     <>
-                        <button type="button" className="btn btn-primary" onClick={() => setIsChestVisible(false)}>Chest</button>
+                        <Button type="button" className="btn btn-primary" onClick={() => setIsChestVisible(false)}>Chest</Button>
                         {chestExercises?.map(exercise => {
                             return <ExerciseCardToAdd
                                 key={exercise.id}
@@ -158,13 +160,13 @@ export const ExerciseListToAdd = () => {
                     </>
                 }
             </div>
-            <div className="legCard">
+            <div className="card">
                 {isLegVisible === false ?
                     <>
-                        <button type="button" className="btn btn-primary" onClick={() => setIsLegVisible(true)}>Legs</button>
+                        <Button type="button" className="btn btn-primary" onClick={() => setIsLegVisible(true)}>Legs</Button>
                     </> :
                     <>
-                        <button type="button" className="btn btn-primary" onClick={() => setIsLegVisible(false)}>Legs</button>
+                        <Button type="button" className="btn btn-primary" onClick={() => setIsLegVisible(false)}>Legs</Button>
                         {legExercises?.map(exercise => {
                             return <ExerciseCardToAdd
                                 key={exercise.id}
@@ -176,13 +178,13 @@ export const ExerciseListToAdd = () => {
                     </>
                 }
             </div>
-            <div className="legCard">
+            <div className="card">
                 {isShoulderVisible === false ?
                     <>
-                        <button type="button" className="btn btn-primary" onClick={() => setIsShoulderVisible(true)}>Shoulders</button>
+                        <Button type="button" className="btn btn-primary" onClick={() => setIsShoulderVisible(true)}>Shoulders</Button>
                     </> :
                     <>
-                        <button type="button" className="btn btn-primary" onClick={() => setIsShoulderVisible(false)}>Shoulders</button>
+                        <Button type="button" className="btn btn-primary" onClick={() => setIsShoulderVisible(false)}>Shoulders</Button>
                         {shoulderExercises?.map(exercise => {
                             return <ExerciseCardToAdd
                                 key={exercise.id}

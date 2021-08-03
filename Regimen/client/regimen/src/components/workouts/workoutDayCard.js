@@ -69,6 +69,9 @@ export const WorkoutdayCard = ({ day, id, handleDelete, saveState, setSaveState 
             deleteExercise(id)
                 .then(() => fetchExercises())
         }
+        // else {
+        //     history.push(`/workouts/workoutDetails/${id}`)
+        // }
     }
 
     useEffect(() => {
@@ -79,22 +82,22 @@ export const WorkoutdayCard = ({ day, id, handleDelete, saveState, setSaveState 
         <>
             <CardBody>
                 <Card>
-                    <h2>{day.name}</h2>
+                    <ButtonGroup>
+                        <Button className="btn btn-success mx-5 mt-3" onClick={() => {
+                            toggleModal();
+                            fetchDays();
+                        }} disabled={isLoading}>Edit</Button>
+                        <Button className="btn btn-danger" onClick={() => handleDelete(day.id)}>Delete</Button>
+                    </ButtonGroup>
+                    <h3>{day.name}</h3>
                     <h6>{day.dayName}</h6>
+                    <Link to={`/exercises/${day.id}/${id}`}><Button>Add an Exercise</Button></Link>
                 </Card>
-                <Link to={`/exercises/${day.id}/${id}`}><Button>Add an Exercise</Button></Link>
                 <div>
                     {exercises?.map(exercise => {
                         return <MyExercises key={exercise.id} exercise={exercise} handleDeleteExercise={handleDeleteExercise} />
                     })}
                 </div>
-                <ButtonGroup>
-                    <Button className="btn btn-success mx-5 mt-3" onClick={() => {
-                        toggleModal();
-                        fetchDays();
-                    }} disabled={isLoading}>Edit</Button>
-                    <Button className="btn btn-danger" onClick={() => handleDelete(day.id)}>Delete</Button>
-                </ButtonGroup>
             </CardBody>
             <Modal isOpen={modal} toggle={toggleModal}>
                 <ModalHeader toggle={toggleModal}>Edit {day.name}</ModalHeader>
