@@ -21,7 +21,7 @@ export default function Header({ isLoggedIn }) {
         <div>
             <Navbar className="nav">
                 <NavbarBrand tag={RRNavLink} to="/">Regimen</NavbarBrand>
-                <NavbarToggler onClick={toggle} />
+                <NavbarToggler className="navToggle" onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav navbar className="mr-auto">
                         {isLoggedIn &&
