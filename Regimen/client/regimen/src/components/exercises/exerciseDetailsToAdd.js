@@ -41,18 +41,18 @@ export const ExerciseDetailsToAdd = () => {
 
     return (
         <>
-            <div>
+            <div className="exerciseHeader">
                 <h2>{exercise.name}</h2>
             </div>
-            <div className="exerciseCategory">
+            <div className="exerciseDetails">
                 <h4>Category:</h4>
                 <p>{exercise.category?.name}</p>
             </div>
-            <div className="exerciseDescription">
+            <div className="exerciseDetails">
                 <h4>Description:</h4>
                 {exercise.description}
             </div>
-            <div className="exerciseEquipment">
+            <div className="exerciseDetails">
                 {exercise.equipment?.length === 0 ?
                     <></> :
                     <>
@@ -62,7 +62,7 @@ export const ExerciseDetailsToAdd = () => {
                         })}
                     </>}
             </div>
-            <div className="exerciseMuscles">
+            <div className="exerciseDetails">
                 {exercise.muscles?.length === 0 ?
                     <></> :
                     <>
@@ -72,7 +72,7 @@ export const ExerciseDetailsToAdd = () => {
                         })}
                     </>}
             </div>
-            <div className="exerciseMuscles">
+            <div className="exerciseDetails">
                 {exercise.muscles_secondary?.length === 0 ?
                     <></> :
                     <>
@@ -82,7 +82,7 @@ export const ExerciseDetailsToAdd = () => {
                         })}
                     </>}
             </div>
-            <Button onClick={handleAdd}>Add to Workout</Button>
+            <Button className="button" onClick={handleAdd}>Add to Workout</Button>
         </>
     )
 }

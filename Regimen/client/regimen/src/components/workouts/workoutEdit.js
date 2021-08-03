@@ -48,7 +48,8 @@ export const WorkoutEdit = () => {
                 </form>
             </fieldset>
             <div className='save-button'>
-                <button className='btn' type='button' disabled={isLoading} variant='primary' onClick={handleSave}>Save Workout</button>
+                <button className='button' type='button' disabled={isLoading} variant='primary' onClick={handleSave}>Save Workout</button>
+                <button className='button' onClick={() => history.push("/workouts")}>Cancel</button>
             </div>
         </>
     )

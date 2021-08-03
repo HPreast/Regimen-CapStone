@@ -6,10 +6,12 @@ export const MyExercises = ({ exercise, handleDeleteExercise }) => {
 
     return (
         <>
-            <a href={`/exercises/exerciseDetails/${exercise.apiId}`}>
-                <h6>{exercise.name}</h6>
-            </a>
-            <Button className="btn btn-danger" onClick={() => handleDeleteExercise(exercise.id)}>Remove</Button>
+
+            <div className="exercise">
+                <a href={`/exercises/exerciseDetails/${exercise.apiId}`}>{exercise.name}</a>
+                <Button className="btn btn-danger" onClick={() => handleDeleteExercise(exercise.id)}>Remove</Button>
+            </div>
+
         </>
     )
 }

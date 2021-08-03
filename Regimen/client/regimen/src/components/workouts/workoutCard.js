@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export const WorkoutCard = ({ workout, handleDeleteWorkout }) => {
     return (
-        <Card>
+        <Card className="card">
             <Link to={`/workouts/workoutDetails/${workout.id}`}>
                 <CardBody>
                     {workout.name}

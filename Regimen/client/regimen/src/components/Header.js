@@ -10,18 +10,20 @@ import {
     NavLink
 } from 'reactstrap';
 import { logout } from "../modules/authManager";
+import "../components/css/header.css"
 
 export default function Header({ isLoggedIn }) {
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
-
+    // color="dark" dark expand="md"
+    // 
     return (
         <div>
-            <Navbar color="dark" dark expand="md">
-                <NavbarBrand tag={RRNavLink} to="/">Dashboard</NavbarBrand>
+            <Navbar className="nav">
+                <NavbarBrand tag={RRNavLink} to="/">Regimen</NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
-                    <Nav className="mr-auto" navbar>
+                    <Nav navbar className="mr-auto">
                         {isLoggedIn &&
                             <>
                                 <NavItem>

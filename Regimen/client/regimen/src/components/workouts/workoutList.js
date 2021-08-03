@@ -28,7 +28,6 @@ export const WorkoutList = () => {
         <>
             <h2>My Workouts</h2>
             <div>
-                <Link to={`/workoutForm`}><button>Create New</button></Link>
                 {workouts?.map(workout => {
                     return <WorkoutCard
                         key={workout.id}
@@ -36,6 +35,7 @@ export const WorkoutList = () => {
                         handleDeleteWorkout={handleDeleteWorkout}
                     />
                 })}
+                <Link to={`/workoutForm`}><button className="button">Create New</button></Link>
             </div>
         </>
     )
