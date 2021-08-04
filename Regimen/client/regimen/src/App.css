@@ -99,3 +99,7 @@ h2 {
   margin-right: 6px;
   margin-top: 6px;
 }
+
+.modal .modal-content {
+  background-color: #5C6673 !important;
+}
