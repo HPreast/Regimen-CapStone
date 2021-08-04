@@ -3,6 +3,7 @@ import { useParams, useHistory } from "react-router";
 import { Button } from "reactstrap";
 import { GetExerciseById } from "../../modules/exerciseManager";
 import { addExercise } from "../../modules/myExerciseManager";
+import { Spinner } from "reactstrap";
 
 export const ExerciseDetails = () => {
     const [exercise, setExercise] = useState({});
@@ -14,6 +15,7 @@ export const ExerciseDetails = () => {
     })
 
     const history = useHistory();
+
 
     const { id, workoutDayId, workoutId } = useParams()
 
@@ -38,6 +40,11 @@ export const ExerciseDetails = () => {
     useEffect(() => {
         displayDetails()
     }, [id])
+
+    if (exercise === null) {
+        // Until we know whether or not the user is logged in or not, just show a spinner
+        return <Spinner className="app-spinner dark" />;
+    }
 
     return (
         <>

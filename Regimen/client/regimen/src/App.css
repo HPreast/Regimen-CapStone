@@ -52,6 +52,7 @@ body {
 }
 
 .card {
+  display: flex;
   background-color: #5C6673 !important;
   border: solid 1px #6FAE57 !important;
   color: #FFFFFF !important;
@@ -83,6 +84,18 @@ h2 {
   text-align: center;
   margin-top: 30px !important;
 }
-/* .modal {
-  color: #282c34;
-} */
+
+.link {
+  text-decoration: none !important;
+}
+
+.edit {
+  justify-content: flex-end !important;
+  margin: 6px !important;
+}
+
+.delete {
+  margin-left: 6px;
+  margin-right: 6px;
+  margin-top: 6px;
+}

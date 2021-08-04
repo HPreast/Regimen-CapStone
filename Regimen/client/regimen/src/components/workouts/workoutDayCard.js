@@ -87,11 +87,11 @@ export const WorkoutdayCard = ({ day, id, handleDelete, saveState, setSaveState 
             <CardBody>
                 <Card>
                     <ButtonGroup>
-                        <Button className="btn btn-success mx-5 mt-3" onClick={() => {
+                        <FontAwesomeIcon icon={faEdit} className="edit" style={{ color: '#6FAE57' }} onClick={() => {
                             toggleModal();
                             fetchDays();
-                        }} disabled={isLoading}><FontAwesomeIcon icon={faEdit}></FontAwesomeIcon></Button>
-                        <Button className="btn btn-danger" onClick={() => handleDelete(day.id)}><FontAwesomeIcon icon={faTrash}></FontAwesomeIcon></Button>
+                        }}></FontAwesomeIcon>
+                        <FontAwesomeIcon icon={faTrash} className="delete" style={{ color: 'red' }} onClick={() => handleDelete(day.id)}></FontAwesomeIcon>
                     </ButtonGroup>
                     <h3>{day.name}</h3>
                     <h6>{day.dayName}</h6>

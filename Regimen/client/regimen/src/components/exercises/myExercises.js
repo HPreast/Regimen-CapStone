@@ -10,8 +10,8 @@ export const MyExercises = ({ exercise, handleDeleteExercise }) => {
         <>
 
             <div className="exercise">
-                <a href={`/exercises/exerciseDetails/${exercise.apiId}`}>{exercise.name}</a>
-                <Button className="btn btn-danger" onClick={() => handleDeleteExercise(exercise.id)}><FontAwesomeIcon icon={faTrash}></FontAwesomeIcon></Button>
+                <a href={`/exercises/exerciseDetails/${exercise.apiId}`} style={{ color: 'white', textDecoration: 'none' }} activeStyle={{ color: 'red' }}>{exercise.name}</a>
+                <FontAwesomeIcon icon={faTrash} className="delete" style={{ color: 'red' }} onClick={() => handleDeleteExercise(exercise.id)}></FontAwesomeIcon>
             </div>
 
         </>

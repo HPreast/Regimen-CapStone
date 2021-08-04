@@ -8,16 +8,17 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 export const WorkoutCard = ({ workout, handleDeleteWorkout }) => {
     return (
         <Card className="card">
-            <Link to={`/workouts/workoutDetails/${workout.id}`}>
+            <Link to={`/workouts/workoutDetails/${workout.id}`} style={{ color: 'white', textDecoration: 'none' }} activeStyle={{ color: 'red' }}>
                 <CardBody>
                     {workout.name}
                 </CardBody>
             </Link>
             <ButtonGroup>
-                <Link to={`/workouts/edit/${workout.id}`}>
-                    <Button className="btn btn-primary"><FontAwesomeIcon icon={faEdit}></FontAwesomeIcon></Button>
+                <Link to={`/workouts/edit/${workout.id}`} style={{ color: '#6FAE57' }}>
+                    <FontAwesomeIcon icon={faEdit} className="edit"></FontAwesomeIcon>
                 </Link>
-                <Button className="btn btn-danger" onClick={() => handleDeleteWorkout(workout.id)}><FontAwesomeIcon icon={faTrash}></FontAwesomeIcon></Button>
+                <FontAwesomeIcon icon={faTrash} className="delete" style={{ color: 'red' }} onClick={() => handleDeleteWorkout(workout.id)}></FontAwesomeIcon>
+                {/* <Button className="btn btn-danger" onClick={() => handleDeleteWorkout(workout.id)}><FontAwesomeIcon icon={faTrash} onClick={() => handleDeleteWorkout(workout.id)}></FontAwesomeIcon></Button> */}
             </ButtonGroup>
         </Card >
     )
