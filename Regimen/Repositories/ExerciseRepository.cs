@@ -21,12 +21,15 @@ namespace Regimen.Repositories
                 {
                     cmd.CommandText = @"
                                         INSERT INTO Exercises
-                                                ([name], workoutDayId, apiId)
+                                                ([name], workoutDayId, numOfSets, numOfReps, weight, apiId)
                                         OUTPUT INSERTED.ID
-                                        VALUES (@name, @workoutDayId, @apiId)
+                                        VALUES (@name, @workoutDayId, @numOfSets, @numOfReps, @weight, @apiId)
                                       ";
                     DbUtils.AddParameter(cmd, "@name", exercise.name);
                     DbUtils.AddParameter(cmd, "@workoutDayId", exercise.workoutDayId);
+                    DbUtils.AddParameter(cmd, "@numOfSets", exercise.numOfSets);
+                    DbUtils.AddParameter(cmd, "@numOfReps", exercise.numOfReps);
+                    DbUtils.AddParameter(cmd, @"weight", exercise.weight);
                     DbUtils.AddParameter(cmd, "@apiId", exercise.apiId);
 
                     exercise.id = (int)cmd.ExecuteScalar();
@@ -84,6 +87,9 @@ namespace Regimen.Repositories
                                                 id,
                                                 name,
                                                 workoutDayId,
+                                                numOfSets,
+                                                numOfReps,
+                                                weight,
                                                 apiId
                                         FROM Exercises
                                         WHERE @Id = workoutDayId
@@ -102,6 +108,9 @@ namespace Regimen.Repositories
                             name = DbUtils.GetString(reader, "name"),
                             workoutDayId = DbUtils.GetInt(reader, "workoutDayId"),
                             apiId = DbUtils.GetInt(reader, "apiId"),
+                            numOfSets = DbUtils.GetInt(reader, "numOfSets"),
+                            numOfReps = DbUtils.GetInt(reader, "numOfReps"),
+                            weight = DbUtils.GetInt(reader, "weight"),
                         };
                         exercises.Add(exercise);
                     }

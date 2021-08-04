@@ -20,7 +20,7 @@ export default function Header({ isLoggedIn }) {
     return (
         <div>
             <Navbar className="nav">
-                <NavbarBrand tag={RRNavLink} to="/">Regimen</NavbarBrand>
+                <NavbarBrand tag={RRNavLink} to="/workouts">Regimen</NavbarBrand>
                 <NavbarToggler className="navToggle" onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav navbar className="mr-auto">
