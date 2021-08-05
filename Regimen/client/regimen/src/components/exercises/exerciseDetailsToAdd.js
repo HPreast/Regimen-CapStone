@@ -11,9 +11,9 @@ export const ExerciseDetailsToAdd = () => {
         name: "",
         workoutDayId: 0,
         apiId: 0,
-        numOfSets: 0,
-        numOfReps: 0,
-        weight: 0
+        numOfSets: "",
+        numOfReps: "",
+        weight: ""
     })
     const [modal, setModal] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
