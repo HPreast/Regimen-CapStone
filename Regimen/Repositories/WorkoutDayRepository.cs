@@ -158,6 +158,10 @@ namespace Regimen.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
+                                       DELETE Exercises 
+                                       FROM Exercises
+                                       WHERE Exercises.workoutDayId = @id;
+
                                        DELETE WorkoutDay
                                        FROM WorkoutDay
                                        WHERE @id = id
