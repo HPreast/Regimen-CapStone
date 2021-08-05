@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink as RRNavLink } from "react-router-dom";
+import { NavLink as RRNavLink, useHistory } from "react-router-dom";
 import {
     Collapse,
     Navbar,
@@ -11,15 +11,18 @@ import {
 } from 'reactstrap';
 import { logout } from "../modules/authManager";
 import "../components/css/header.css"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 export default function Header({ isLoggedIn }) {
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
-    // color="dark" dark expand="md"
-    // 
+
+    const history = useHistory();
     return (
         <div>
             <Navbar className="nav">
+                <FontAwesomeIcon className="backArrow" icon={faArrowLeft} onClick={() => history.goBack()}></FontAwesomeIcon>
                 <NavbarBrand tag={RRNavLink} to="/workouts">Regimen</NavbarBrand>
                 <NavbarToggler className="navToggle" onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
@@ -53,6 +56,6 @@ export default function Header({ isLoggedIn }) {
                     </Nav>
                 </Collapse>
             </Navbar>
-        </div>
+        </div >
     );
 }

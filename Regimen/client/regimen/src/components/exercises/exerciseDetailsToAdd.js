@@ -41,7 +41,6 @@ export const ExerciseDetailsToAdd = () => {
     }
 
     const handleAdd = () => {
-        debugger
         let newExercise = { ...myExercise }
         newExercise.name = exercise.name
         newExercise.workoutDayId = workoutDayId
