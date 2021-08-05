@@ -10,7 +10,7 @@ export const WorkoutCard = ({ workout, handleDeleteWorkout }) => {
         <Card className="card">
             <Link to={`/workouts/workoutDetails/${workout.id}`} style={{ color: 'white', textDecoration: 'none' }} activeStyle={{ color: 'red' }}>
                 <CardBody>
-                    {workout.name}
+                    <h5>{workout.name}</h5>
                 </CardBody>
             </Link>
             <ButtonGroup>

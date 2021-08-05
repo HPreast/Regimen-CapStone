@@ -10,7 +10,7 @@ export const MyExercises = ({ exercise, handleDeleteExercise }) => {
         <>
 
             <div className="exercise">
-                <a href={`/exercises/exerciseDetails/${exercise.apiId}`} style={{ color: 'white', textDecoration: 'none' }} activeStyle={{ color: 'red' }}>{exercise.name}
+                <a href={`/exercises/exerciseDetails/${exercise.apiId}`} style={{ color: 'white', textDecoration: 'none' }} activeStyle={{ color: 'red' }}><h6>{exercise.name}</h6>
                     <p>{exercise.numOfSets}x repetitions of {exercise.numOfReps} with {exercise.weight}lbs.</p></a>
                 <FontAwesomeIcon icon={faTrash} className="delete" style={{ color: 'red' }} onClick={() => handleDeleteExercise(exercise.id)}></FontAwesomeIcon>
             </div>

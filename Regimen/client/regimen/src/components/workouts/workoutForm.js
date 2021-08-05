@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
+import { ButtonGroup, Button } from "reactstrap";
 import { addWorkout } from "../../modules/workoutManager";
 
 export const WorkoutForm = () => {
@@ -39,9 +40,10 @@ export const WorkoutForm = () => {
                     <input type="text" id="name" onChange={handleControlledInputChange} required className='form-control' placeholder='Enter a title' />
                 </form>
             </fieldset>
-            <div className='save-button'>
-                <button className='btn' type='button' disabled={isLoading} variant='primary' onClick={handleSave}>Save Workout</button>
-            </div>
+            {/* <ButtonGroup> */}
+            <Button className='button' type='button' disabled={isLoading} variant='primary' onClick={handleSave}>Save Workout</Button>
+            <Button className='button' type='button' disabled={isLoading} variant='primary' onClick={() => history.push("/workouts")}>Cancel</Button>
+            {/* </ButtonGroup> */}
         </>
     )
 }

@@ -85,7 +85,7 @@ export const WorkoutdayCard = ({ day, id, handleDelete, saveState, setSaveState 
     return (
         <>
             <CardBody>
-                <Card>
+                <Card className="workoutDayCard">
                     <ButtonGroup>
                         <FontAwesomeIcon icon={faEdit} className="edit" style={{ color: '#6FAE57' }} onClick={() => {
                             toggleModal();
