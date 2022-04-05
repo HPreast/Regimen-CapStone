@@ -8,7 +8,7 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 export const WorkoutCard = ({ workout, handleDeleteWorkout }) => {
     return (
         <Card className="card">
-            <Link to={`/workouts/workoutDetails/${workout.id}`} style={{ color: 'white', textDecoration: 'none' }} activeStyle={{ color: 'red' }}>
+            <Link to={`/workouts/workoutDetails/${workout.id}`} style={{ color: 'white', textDecoration: 'none' }} activestyle={{ color: 'red' }}>
                 <CardBody>
                     <h5>{workout.name}</h5>
                 </CardBody>

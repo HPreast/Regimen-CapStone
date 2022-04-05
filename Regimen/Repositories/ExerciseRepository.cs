@@ -139,5 +139,29 @@ namespace Regimen.Repositories
                 }
             }
         }
+
+        public void EditExercise(Exercise exercise)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using ( var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                                        UPDATE Exercises
+                                        SET numOfSets = @numOfSets,
+                                            numOfReps = @numOfReps,
+                                            weight = @weight
+                                        WHERE id = @id
+                                       ";
+                    DbUtils.AddParameter(cmd, "@numOfSets", exercise.numOfSets);
+                    DbUtils.AddParameter(cmd, "@numOfReps", exercise.numOfReps);
+                    DbUtils.AddParameter(cmd, "@weight", exercise.weight);
+                    DbUtils.AddParameter(cmd, "@id", exercise.id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

@@ -24,6 +24,7 @@ export const WorkoutList = () => {
         getAll()
     }, [])
 
+
     return (
         <>
             <h2>My Workouts</h2>

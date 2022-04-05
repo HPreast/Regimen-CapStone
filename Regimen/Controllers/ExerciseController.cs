@@ -47,5 +47,19 @@ namespace Regimen.Controllers
             _exerciseRepository.DeleteExercise(id);
             return NoContent();
         }
+
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, Exercise exercise)
+        {
+            if (id != exercise.id)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                _exerciseRepository.EditExercise(exercise);
+                return NoContent();
+            }
+        }
     }
 }
