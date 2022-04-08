@@ -11,9 +11,9 @@ import { useEffect } from "react/cjs/react.production.min";
 export const MyExercises = ({ exercise, handleDeleteExercise }) => {
     const [modal, setModal] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const [saveState, setSaveState] = useState(false);
 
     const history = useHistory();
+    const reload = () => window.location.reload();
 
     const { id } = useParams()
     const [myExercise, setMyExercise] = useState({
@@ -27,13 +27,6 @@ export const MyExercises = ({ exercise, handleDeleteExercise }) => {
     })
 
     const toggleModal = () => setModal(!modal);
-
-    const getEdit = () => {
-        return GetExerciseById(myExercise.id)
-            .then(res => {
-                setMyExercise(res);
-            })
-    }
 
     const handleInputChange = (event) => {
         let newExercise = { ...myExercise }
@@ -53,17 +46,10 @@ export const MyExercises = ({ exercise, handleDeleteExercise }) => {
         newExercise.id = exercise.id
         setMyExercise(newExercise);
         editExercise(newExercise)
-            .then(() => setSaveState(!saveState))
         // .then(() => history.push(`/workouts/workoutDetails/${id}`))
     }
 
-    // const refreshEdit = () => {
-    //     history.push(`/workouts/workoutDetails/${id}`)
-    // }
 
-    // useEffect(() => {
-    //     refreshEdit();
-    // }, [saveState])
     return (
         <>
 
@@ -73,7 +59,6 @@ export const MyExercises = ({ exercise, handleDeleteExercise }) => {
                 <FontAwesomeIcon icon={faTrash} className="delete" style={{ color: 'red' }} onClick={() => handleDeleteExercise(exercise.id)}></FontAwesomeIcon>
                 <FontAwesomeIcon icon={faEdit} className="edit" style={{ color: '#6FAE57' }} onClick={() => {
                     toggleModal();
-                    // getEdit();
                 }}></FontAwesomeIcon>
             </div>
             <Modal isOpen={modal} toggle={toggleModal}>
@@ -87,6 +72,7 @@ export const MyExercises = ({ exercise, handleDeleteExercise }) => {
                     <Button color="success" onClick={() => {
                         handleEditExercise();
                         toggleModal();
+                        reload();
                     }} disabled={isLoading}>Update Exercise</Button>{' '}
                     <Button color="secondary" onClick={toggleModal}>Cancel</Button>
                 </ModalFooter>

@@ -61,7 +61,6 @@ export const WorkoutdayCard = ({ day, id, handleDelete, saveState, setSaveState 
     }
 
     const handleEdit = () => {
-        // debugger
         let newDay = { ...workoutDay }
         newDay.id = day.id
         newDay.workoutId = id
@@ -75,9 +74,6 @@ export const WorkoutdayCard = ({ day, id, handleDelete, saveState, setSaveState 
             deleteExercise(id)
                 .then(() => fetchExercises())
         }
-        // else {
-        //     history.push(`/workouts/workoutDetails/${id}`)
-        // }
     }
 
     useEffect(() => {
