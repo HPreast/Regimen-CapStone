@@ -41,3 +41,17 @@ export const deleteExercise = (id) => {
         })
     })
 }
+
+export const editExercise = (exercise) => {
+    return getToken().then((token) => {
+        console.log(exercise);
+        return fetch(`${_apiUrl}/${exercise.id}`, {
+            method: "PUT",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(exercise)
+        })
+    })
+}

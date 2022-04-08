@@ -25,8 +25,10 @@ export const WorkoutdayCard = ({ day, id, handleDelete, saveState, setSaveState 
     const [toggle, setToggle] = useState({
         workoutDay: false
     })
-    // const [saveState, setSaveState] = useState(false);
+
     const [exercises, setExercises] = useState([]);
+
+
     const [isVisible, setIsVisible] = useState(false);
 
     const history = useHistory();

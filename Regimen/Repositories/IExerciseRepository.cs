@@ -8,6 +8,7 @@ namespace Regimen.Repositories
         public void AddExercise(Exercise exercise);
         public List<Exercise> GetExercises();
         public void DeleteExercise(int id);
+        public void EditExercise(Exercise exercise);
         public List<Exercise> GetExercisesByWorkoutDay(int id);
     }
 }
